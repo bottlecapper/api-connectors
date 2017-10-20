@@ -11,6 +11,11 @@ The copyright belongs to the author. You can modify and test with your own strat
 Getting Started
 ---------------
 Refer to the [BitMEX Official Api-connectors](https://github.com/BitMEX/api-connectors).
+
+Install the relative python packages.
+
+Set your own API Key and Secret
+
 Run it: `./bitmexTrade`
 
 Operation Overview
