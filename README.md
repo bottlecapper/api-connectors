@@ -48,4 +48,6 @@ Compatibility
 
 This module is compatible with only Python 2.
 
-The user can modify to make it working on Python 3. Some helpful tips on Py2/3 compatibility: http://python-future.org/compatible_idioms.html
+The user can modify to make it working on Python 3. 
+
+Some helpful tips on Py2/3 compatibility: http://python-future.org/compatible_idioms.html
