@@ -10,7 +10,7 @@ It makes profits by trading between XBTUSD and XBTZ17: dynamically putting order
 Getting Started
 ---------------
 Refer to the [BitMEX Official Api-connectors](https://github.com/BitMEX/api-connectors).
-
+Run it: `./bitmexTrade
 
 Operation Overview
 ------------------
