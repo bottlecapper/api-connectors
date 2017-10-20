@@ -16,7 +16,7 @@ Install the relative python packages.
 
 Set your own API Key and Secret
 
-Run it: `./bitmexTrade`
+Run it: `python bitmexTrade.py`
 
 Operation Overview
 ------------------
