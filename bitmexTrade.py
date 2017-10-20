@@ -2,13 +2,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys
-sys.path.append('THE PATH TO/api-connectors/official-http/python-swaggerpy')
+sys.path.append('official-http/python-swaggerpy')
 from bravado.client import SwaggerClient
 from bravado.requests_client import RequestsClient
 from BitMEXAPIKeyAuthenticator import APIKeyAuthenticator
 import json
 
-sys.path.append('THE PATH TO/api-connectors/official-ws/python')
+sys.path.append('official-ws/python')
 from bitmex_websocket import BitMEXWebsocket
 
 import time
@@ -91,7 +91,6 @@ wsUSD = BitMEXWebsocket(endpoint=URL, symbol="XBTUSD", api_key=API_KEY, api_secr
 wsZ17 = BitMEXWebsocket(endpoint=URL, symbol="XBTZ17", api_key=API_KEY, api_secret=API_SECRET)
 
 
-
 # My Settings
 
 amount_usd = 100            # positive
@@ -135,18 +134,11 @@ depth25USD = wsUSD.market_depth()
 depth25Z17 = wsZ17.market_depth()
 
 
-
-
-
-
 # Begin Trading
 
 while(1):
-
-
     iter = iter + 1
-
-
+    
     [Z17_price1, Z17_tradeType1] = bit_compute(amount_usd, depth25Z17)                      # buy Z17
     Z17_buffer1[iter % Nbuffer] = Z17_price1
     std1 = np.std(Z17_buffer1)    
@@ -162,16 +154,12 @@ while(1):
     difference2 = float(Z17_price1) - USD_price2                                            # 2: buy Z17, sell USD
     diff_buffer2[iter % Nbuffer] = difference2
 
-
-
-
     if iter < Nbuffer:
         continue
 
     room1 = (np.mean(diff_buffer1) - BIAS) / GAP
     room2 = (np.mean(diff_buffer2) - BIAS) / GAP
     OrderExp = (np.mean([diff_buffer1, diff_buffer2]) - BIAS) / GAP * FACTOR
-
 
 
     # Statistic
@@ -204,9 +192,8 @@ while(1):
         logging.info("Time: %s; XBT: %f; Z17: %f; diff: %f; profitExp: %f" % (time.strftime("%H:%M:%S"), -resUSD['avgPx'], resZ17['avgPx'], resZ17['avgPx'] - resUSD['avgPx'],
                                                                    np.sum(trade_buffer_XBT) + np.sum(trade_buffer_Z17)))
 
- 
- 
-    # when bit is decreasing slower OR increasing faster THAN Z17, sell bit (it will converge to Z17) and buy Z17 (it will converge to bit)
+        
+     # when bit is decreasing slower OR increasing faster THAN Z17, sell bit (it will converge to Z17) and buy Z17 (it will converge to bit)
     if room2 + 0.5 <= OrderNum / FACTOR and std1 < 1/60.0 and std2 < 1/60.0 and np.mean(np.diff(Z17_buffer1)) <= 0:
         
         resUSD, USD_response = bitMEXAuthenticated.Order.Order_new(symbol='XBTUSD', side=USD_tradeType2, orderQty=abs(amount_usd), price=str(float(USD_price2) - TradeMargin)).result()
@@ -225,7 +212,6 @@ while(1):
     diffUP = (OrderNum/FACTOR + 0.5)*GAP + BIAS
     diffDown = (OrderNum/FACTOR - 0.5)*GAP + BIAS
     profitExp = np.sum(trade_buffer_XBT) + np.sum(trade_buffer_Z17) #*amount_usd*FACTOR/Z17_price2
-
 
 
     # Display
