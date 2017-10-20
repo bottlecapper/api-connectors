@@ -1,5 +1,5 @@
-BitMEX Market Trader
-====================
+BitMEX Market Bot for Intertemporal Arbitrage
+=============================================
 
 This is a trading bot for use with [BitMEX](https://www.bitmex.com).
 
@@ -11,7 +11,7 @@ The copyright belongs to the author. You can modify and test with your own strat
 Getting Started
 ---------------
 Refer to the [BitMEX Official Api-connectors](https://github.com/BitMEX/api-connectors).
-Run it: `./bitmexTrade
+Run it: `./bitmexTrade`
 
 Operation Overview
 ------------------
@@ -21,8 +21,8 @@ This market maker works on the following principles:
 * The bot tracks the last 16 mins data from `bidPrice` and `askPrice` of the XBTUSD and XBTZ17 markets to calculate the gap. 
 * Based on parameters set by the user, the bot decides the amount for each order. 
 * The user can specify an initial gap (through the BIAS variable) according to his/her experience. It means when the gap equals BIAS, there will be no order to put. New orders are generated when the gap becomes higher or lower. Positions will be closed when the gap converges to the BIAS. 
-* THe bot keep tracking the historical data (last 16 mins, which can be specified by the user), to avoid wild fluctuation. It calculates the standard deviation of the data. When the price curve becomes flat, it starts trading again. 
-* The bot then prints details of contracts traded, time, gap, and relative profit.
+* To minimize the risks, the bot avoids trading when wild fluctuation happens. It keep tracking the historical data (e.g. 15 mins, which can be specified by the user) and calculates some statistical indicators. When the price curve returns flat, it starts trading again. 
+* In the end of each interaton, the bot prints details of time, market gap, contracts traded, relative profit, etc.
 
 Simplified Output
 -----------------
