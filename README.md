@@ -3,9 +3,10 @@ BitMEX Market Trader
 
 This is a trading bot for use with [BitMEX](https://www.bitmex.com).
 
-The copyright belongs to the author. 
-You can modify test with your own strategies. 
 It makes profits by trading between XBTUSD and XBTZ17: dynamically putting orders by learning the historical data curve, open long for the lower price market and short for the higher price market. 
+
+The copyright belongs to the author. You can modify test with your own strategies. 
+
 
 Getting Started
 ---------------
